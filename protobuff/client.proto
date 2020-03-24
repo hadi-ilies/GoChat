@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package client;
+package protobuff;
 
 message ClientBDD {
     string name = 1;
