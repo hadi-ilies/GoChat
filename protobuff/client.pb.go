@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.20.1-devel
 // 	protoc        v3.11.4
-// source: client.proto
+// source: protobuff/client.proto
 
-package protobuff
+package client
 
 import (
 	proto "github.com/golang/protobuf/proto"
@@ -23,34 +23,34 @@ const (
 
 // This is a compile-time assertion that a sufficiently up-to-date version
 // of the legacy proto package is being used.
-const _ = proto.ProtoPackageIsVersion4
+const _ = proto.ProtoPackageIsVersion3
 
-type Client struct {
+type ClientBDD struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id   int32  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Msg  string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
 }
 
-func (x *Client) Reset() {
-	*x = Client{}
+func (x *ClientBDD) Reset() {
+	*x = ClientBDD{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_client_proto_msgTypes[0]
+		mi := &file_protobuff_client_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Client) String() string {
+func (x *ClientBDD) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Client) ProtoMessage() {}
+func (*ClientBDD) ProtoMessage() {}
 
-func (x *Client) ProtoReflect() protoreflect.Message {
-	mi := &file_client_proto_msgTypes[0]
+func (x *ClientBDD) ProtoReflect() protoreflect.Message {
+	mi := &file_protobuff_client_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,52 +61,53 @@ func (x *Client) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Client.ProtoReflect.Descriptor instead.
-func (*Client) Descriptor() ([]byte, []int) {
-	return file_client_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use ClientBDD.ProtoReflect.Descriptor instead.
+func (*ClientBDD) Descriptor() ([]byte, []int) {
+	return file_protobuff_client_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Client) GetId() int32 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *Client) GetName() string {
+func (x *ClientBDD) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-var File_client_proto protoreflect.FileDescriptor
+func (x *ClientBDD) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
 
-var file_client_proto_rawDesc = []byte{
-	0x0a, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x66, 0x22, 0x2c, 0x0a, 0x06, 0x43, 0x6c, 0x69,
-	0x65, 0x6e, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
-	0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var File_protobuff_client_proto protoreflect.FileDescriptor
+
+var file_protobuff_client_proto_rawDesc = []byte{
+	0x0a, 0x16, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x66, 0x2f, 0x63, 0x6c, 0x69, 0x65,
+	0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74,
+	0x22, 0x31, 0x0a, 0x09, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x42, 0x44, 0x44, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6d, 0x73, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_client_proto_rawDescOnce sync.Once
-	file_client_proto_rawDescData = file_client_proto_rawDesc
+	file_protobuff_client_proto_rawDescOnce sync.Once
+	file_protobuff_client_proto_rawDescData = file_protobuff_client_proto_rawDesc
 )
 
-func file_client_proto_rawDescGZIP() []byte {
-	file_client_proto_rawDescOnce.Do(func() {
-		file_client_proto_rawDescData = protoimpl.X.CompressGZIP(file_client_proto_rawDescData)
+func file_protobuff_client_proto_rawDescGZIP() []byte {
+	file_protobuff_client_proto_rawDescOnce.Do(func() {
+		file_protobuff_client_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuff_client_proto_rawDescData)
 	})
-	return file_client_proto_rawDescData
+	return file_protobuff_client_proto_rawDescData
 }
 
-var file_client_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_client_proto_goTypes = []interface{}{
-	(*Client)(nil), // 0: protobuff.Client
+var file_protobuff_client_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_protobuff_client_proto_goTypes = []interface{}{
+	(*ClientBDD)(nil), // 0: client.ClientBDD
 }
-var file_client_proto_depIdxs = []int32{
+var file_protobuff_client_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -114,14 +115,14 @@ var file_client_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_client_proto_init() }
-func file_client_proto_init() {
-	if File_client_proto != nil {
+func init() { file_protobuff_client_proto_init() }
+func file_protobuff_client_proto_init() {
+	if File_protobuff_client_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_client_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Client); i {
+		file_protobuff_client_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClientBDD); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -137,18 +138,18 @@ func file_client_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_client_proto_rawDesc,
+			RawDescriptor: file_protobuff_client_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_client_proto_goTypes,
-		DependencyIndexes: file_client_proto_depIdxs,
-		MessageInfos:      file_client_proto_msgTypes,
+		GoTypes:           file_protobuff_client_proto_goTypes,
+		DependencyIndexes: file_protobuff_client_proto_depIdxs,
+		MessageInfos:      file_protobuff_client_proto_msgTypes,
 	}.Build()
-	File_client_proto = out.File
-	file_client_proto_rawDesc = nil
-	file_client_proto_goTypes = nil
-	file_client_proto_depIdxs = nil
+	File_protobuff_client_proto = out.File
+	file_protobuff_client_proto_rawDesc = nil
+	file_protobuff_client_proto_goTypes = nil
+	file_protobuff_client_proto_depIdxs = nil
 }
