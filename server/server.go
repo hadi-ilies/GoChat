@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hadi-ilies/ProtoBuffExample/protobuff"
+	"github.com/hadi-ilies/GoChat/protobuff"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -105,7 +105,8 @@ func manageRoom(room *room) {
 			eof, timeout := room.handleReadError(err)
 			if eof {
 				room.deleteChatter(&chatter)
-				room.sendToAll("\nClient " + strconv.Itoa(i+1) + " has quitted the room\n") //todo store chatters name and display it when they quit
+				//todo store chatters name and display it when they quit instead of displaying client index
+				room.sendToAll("\nClient " + strconv.Itoa(i+1) + " has quitted the room\n")
 				continue
 			}
 			if timeout {
@@ -120,10 +121,10 @@ func manageRoom(room *room) {
 			}
 
 			//send text to all clients except the one who sent the message to the server
-			room.sendToAllExcept("\n"+clientbdd.GetName()+": "+clientbdd.GetMsg(), []uint8{uint8(i)})
+			room.sendToAllExcept("\n"+"<"+clientbdd.GetName()+">"+": "+clientbdd.GetMsg(), []uint8{uint8(i)})
 			//resend the text to the client in order to "save" his messages
 			//Note/todo: it better to display the text directly in the client and not resend the message to the client
-			room.sendTo("\nMe: "+clientbdd.GetMsg(), []uint8{uint8(i)})
+			room.sendTo("\n<Me>: "+clientbdd.GetMsg(), []uint8{uint8(i)})
 		}
 	}
 }
