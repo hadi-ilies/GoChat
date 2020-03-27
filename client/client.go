@@ -6,8 +6,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/hadi-ilies/ProtoBuffExample/protobuff"
-	"google.golang.org/protobuf/proto"
+	"github.com/hadi-ilies/GoChat/protobuff"
 )
 
 //Client is a user that will connect to my chatserver
@@ -32,25 +31,7 @@ func (client *Client) connect(connType string) net.Conn {
 	return conn
 }
 
-//sendText: get and send the text from the stdin
-func (client *Client) sendText(conn net.Conn) {
-	scanner := bufio.NewScanner(os.Stdin)
-	for {
-		//buffer that store server's response
-		text := getLine(scanner)
-		if len(text) != 0 {
-			client.packet.Msg = text
-			data, err := proto.Marshal(client.packet)
-			if err != nil {
-				log.Fatalln("Failed to serialize post in protobuf:", err)
-			}
-			//send proto struct serialized!
-			conn.Write(data)
-		} else {
-			break
-		}
-	}
-}
+//register: with this function the client has to insert a name in order to connect to our server
 func (client *Client) register() {
 	scanner := bufio.NewScanner(os.Stdin)
 	print("Register your name : ")
